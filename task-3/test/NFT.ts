@@ -26,6 +26,16 @@ describe("NFT测试", () => {
             expect(await myNFT.ownerOf(1)).to.equal(addr2.address);
             expect(await myNFT.totalSupply()).to.equal(2);
         })
+        
+        it('我锻造的NFT清单', async () => {
+            await myNFT.mintNFT(addr1.address, 'ipfs://test1')
+            await myNFT.mintNFT(addr1.address, 'ipfs://test2')
+            await myNFT.mintNFT(addr1.address, 'ipfs://test3')
+            
+            // NFTLists
+            const nftList = await myNFT.NFTLists(addr1.address);
+            expect(nftList.length).to.equal(3);
+        })
     })
 
     describe("NFT转账", () => {

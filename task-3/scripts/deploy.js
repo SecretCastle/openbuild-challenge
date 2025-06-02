@@ -10,6 +10,9 @@ async function main() {
   await token.waitForDeployment();
   console.log("✅ MyToken deployed to:", await token.getAddress());
 
+  const balance = await token.balanceOf(deployer.address);
+  console.log("Balance:", hre.ethers.formatEther(balance)); 
+
   // 2. Deploy MyNFT
   const NFT = await hre.ethers.getContractFactory("MyNFT");
   const nft = await NFT.deploy();

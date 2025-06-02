@@ -123,4 +123,14 @@ contract NFTMarketplace {
         }
         return notMyListings;
     }
+
+    function isListed(uint256 tokenId) public view returns (bool) {
+        // 检查listings中是否存在该tokenId
+        for (uint256 i = 0; i < allListings.length; i++) {
+            if (allListings[i].tokenId == tokenId) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
